@@ -6,8 +6,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Juan Alfonso Chan Resume Registry</title>
+    <title>Juan Alfonso Chan Chong</title>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+    crossorigin="anonymous">
 </head>
 
 <body style="font-family: sans-serif;">
@@ -22,16 +27,16 @@
         unset($_SESSION['success']);
     }
     
-    //Account validation using mySQL DB
-    if (isset($_POST['account']) && isset($_POST['pw'])){
-        unset($_SESSION['account']); //Logout current user
+    //email validation using mySQL DB
+    if (isset($_POST['submit'])){
+        unset($_SESSION['email']); //Logout current user
 
         $salt = 'XyZzy12*_';
-        $check = hash('md5', $salt.$_POST['pw']);
+        $check = hash('md5', $salt.$_POST['pass']);
 
         $query = "SELECT user_id, name FROM misc.users WHERE email = ? AND password = ?";
         $stmt = mysqli_prepare($dbc, $query);        
-        mysqli_stmt_bind_param($stmt, "ss", $_POST['account'], $check);
+        mysqli_stmt_bind_param($stmt, "ss", $_POST['email'], $check);
         mysqli_stmt_execute($stmt);
 
         mysqli_stmt_bind_result($stmt, $uid, $name);
@@ -42,7 +47,7 @@
             mysqli_close($dbc);
 
             //SESSION VARIABLES SETUP & RETURN TO INDEX
-            $_SESSION['account'] = $name;
+            $_SESSION['email'] = $name;
             $_SESSION['user_id'] = $uid;
             $_SESSION['success'] = "Logged in.";
             header('Location: index.php');
@@ -56,14 +61,16 @@
     }
 ?>
 
+<div class="container">
 <!-- HTML FORM -->
 <form method="post">
-<p>Email: <input type="text" name="account" value=""></p>
-<p>Password: <input type="password" name="pw" value="" id="id_1723"></p>
-<p><input type="submit" onclick="return doValidate();" value="Log In">
+<p>Email: <input type="text" name="email" value=""></p>
+<p>Password: <input type="password" name="pass" value="" id="id_1723"></p>
+<p><input type="submit" onclick="return doValidate();" name="submit" value="Log In">
 <!-- <button onclick = "document.location='index.php';">Cancel</button> -->
 <a href="index.php">Cancel</a></p>
 </form>
+</div>
 
 <script>
 function doValidate(){

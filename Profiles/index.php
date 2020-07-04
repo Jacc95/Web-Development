@@ -5,9 +5,7 @@
 ?>
 <html>
 <head>
-<title>Juan Alfonso Chan Resume Registry</title>
-<!-- bootstrap.php - this is HTML -->
-
+<title>Juan Alfonso Chan Chong</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" 
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
@@ -23,7 +21,7 @@
 </head>
 <body>
 <div class="container">
-<h1>Juan Alfonso Chan Resume Registry</h1><hr>
+<h1>Juan Alfonso Chan - Resume Registry</h1><hr>
 
 <!-- LOGIN/LOGOUT FEATURE -->
 <?php 
@@ -36,7 +34,7 @@
             unset($_SESSION['success']);
         }
 
-        if(!isset($_SESSION["account"])){ 
+        if(!isset($_SESSION["email"])){ 
         echo '<p><a href="login.php">Please log in</a></p>';
         }
         else{
@@ -56,7 +54,7 @@
         
         <tr><td align="left"><b>Name</b></td>
         <td align="left"><b>Headline</b></td>';
-        if(isset($_SESSION["account"])){
+        if(isset($_SESSION["email"])){
             echo '<td align="left"><b>Action</b></td>';
         }
         echo '</tr>';
@@ -67,7 +65,7 @@
             $row['first_name'] . ' ' .
             $row['last_name'] . '</a>' .'</td><td align="left">' .
             $row['headline'] . '</td><td align="left">' ;
-            if(isset($_SESSION["account"])){
+            if(isset($_SESSION["email"])){
                 echo '<a href="edit.php?profile_id='.$row['profile_id'].'">Edit</a>' . ' / ' ;  
                 echo '<a href="delete.php?profile_id='.$row['profile_id'].'">Delete</a>' .
                 '</td><td align="left">';
@@ -82,8 +80,8 @@
 </div>
 <br>
 <!-- SHOW 'ADD NEW' OPTION WHEN LOGGED IN -->
-<?php if(isset($_SESSION["account"])){ 
-    echo '<div class = "container"><a href="add.php">Add new</a></div>';
+<?php if(isset($_SESSION["email"])){ 
+    echo '<div class = "container"><a href="add.php">Add New Entry</a></div>';
     }
 ?>
 </body>

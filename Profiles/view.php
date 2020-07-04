@@ -5,10 +5,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Juan Alfonso Chan Resume Registry</title>
+    <title>Juan Alfonso Chan Chong</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+    crossorigin="anonymous">
 </head>
 
 <body>
+<div class="container">
 <h1>Profile information</h1><hr>
 
 <?php        
@@ -38,4 +45,5 @@
     mysqli_close($dbc);
 
 ?>
+</div>
 </body>
